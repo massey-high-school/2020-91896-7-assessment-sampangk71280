@@ -14,6 +14,7 @@ def shape_checker(question, error):
 
         # continues if valid shape is chosen
         if shape in possible_shapes:
+            print("Good job!")
             break
         # prints error message
         else:
@@ -25,8 +26,9 @@ possible_shapes = ["circle", "square", "rectangle", "triangle", "parallelogram",
 
 # Code from https://www.edureka.co/community/1792/how-to-print-array-list-without-brackets-in-python
 # .join removes brackets and ' when printing out the list and adds a space between each item
-choices =(' ' .join(possible_shapes))
+choices =(', ' .join(possible_shapes))
 
 # asks user for shape
-shape = shape_checker("Please choose a shape to pick from: {} ".format(choices), "Oops please choose a shape from the list!")
+for item in possible_shapes:
+    shape = shape_checker("Please choose a shape to pick from: {} \nShape: ".format(choices), "Oops please choose a shape from the list!")
 
