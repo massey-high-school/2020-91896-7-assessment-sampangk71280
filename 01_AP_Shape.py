@@ -3,13 +3,30 @@
 # To do:
 # Ask user what shape they want to calculate
 
-# shapes available
-possible_shapes = ["circle", "square", "rectangle", "triangle", "parallelogram", "trapezium"]
-# asks user for shape wanted
-shape = input("Please choose a shape to pick from: {}".format(possible_shapes)).lower()
+# Functions
 
-# checks if user enters valid shape
-if shape in possible_shapes:
-    print("Yay")
-else:
-    print("oopsie")
+# Checks that the user choices a shape from the list
+def shape_checker(question, error):
+    valid = False
+    while not valid:
+        # question
+        shape = input(question).lower()
+
+        # continues if valid shape is chosen
+        if shape in possible_shapes:
+            break
+        # prints error message
+        else:
+            print(error)
+
+
+# Shapes available
+possible_shapes = ["circle", "square", "rectangle", "triangle", "parallelogram", "trapezium"]
+
+# Code from https://www.edureka.co/community/1792/how-to-print-array-list-without-brackets-in-python
+# .join removes brackets and ' when printing out the list and adds a space between each item
+choices =(' ' .join(possible_shapes))
+
+# asks user for shape
+shape = shape_checker("Please choose a shape to pick from: {} ".format(choices), "Oops please choose a shape from the list!")
+
