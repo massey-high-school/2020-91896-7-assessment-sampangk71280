@@ -32,7 +32,7 @@ rectangle_area = length * width
 rectangle_perimeter = (2 * length) + (2 * width)
 print("Rectangle\nArea: {:.2f}\nPerimeter: {:.2f}\n".format(rectangle_area, rectangle_perimeter))
 
-# Triangle formula 
+# Triangle formula
 triangle_area = 0.5 * base * height
 triangle_perimeter = side_a + side_b +side_c
 print("Triangle\nArea: {:.2f}\nPerimeter: {:.2f}\n".format(triangle_area, triangle_perimeter))
