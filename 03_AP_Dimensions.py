@@ -68,7 +68,7 @@ elif shape == "square":
     # gets length
     length = intcheck("Length: ", 0)
     # calculates area and perimeter
-    square_area = length * 2
+    square_area = length * length
     square_perimeter = length * 4
     print("-----Square-----\nArea: {:.2f}\nPerimeter: {:.2f}\n".format(square_area, square_perimeter))
 
