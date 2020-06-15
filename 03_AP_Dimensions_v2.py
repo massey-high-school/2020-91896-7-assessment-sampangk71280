@@ -77,7 +77,7 @@ def dimensions_needed(shape):
         elif shape == "trapezium":
             side_d = intcheck("Side D: ", 0)
 
-    # formats statements 
+    # formats statements
     print("-----{}-----\nArea: {:.2f}\nPerimeter: {:.2f}\n".format(shape,area,perimeter))
     return area, perimeter
 
