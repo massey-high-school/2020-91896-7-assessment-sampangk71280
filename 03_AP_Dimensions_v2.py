@@ -66,23 +66,33 @@ def dimensions_needed(shape):
             perimeter = (2 * length) + (2 * width)
 
     elif shape == "triangle" or shape == "parallelogram" or shape == "trapezium":
-        # gets height
-        height = intcheck("Height: ")
+        # gets height, side a, and side b (common between the three shapes)
         side_a = intcheck("Side A: ")
         side_b = intcheck("Side B: ")
-        if shape == "parallelogram" or shape == "triangle":
+        height = intcheck("Height: ")
+        # gets the remaining dimensions needed for each shape
+        if shape == "parallelogram":
             base = intcheck("Base: ")
+            area = base * height
+            perimeter = 2 * (side_a + side_b)
         elif shape == "triangle" or "trapezium":
             side_c = intcheck("Side C: ")
+            base = intcheck("Base: ")
+            area = 0.5 * base * height
+            perimeter = side_a + side_b + side_c
         elif shape == "trapezium":
-            side_d = intcheck("Side D: ", 0)
+            side_c = intcheck("Side C: ")
+            side_d = intcheck("Side D: ")
+            area = (side_a + side_b) / 2 * height
+            perimeter = side_a + side_b + side_c + side_d
 
     # formats statements
     print("-----{}-----\nArea: {:.2f}\nPerimeter: {:.2f}\n".format(shape,area,perimeter))
     return area, perimeter
 
 
-
+# Main Routine
+# Loops entire calculator
 keep_going = ""
 while keep_going == "":
 
@@ -96,8 +106,6 @@ while keep_going == "":
     side_b = 0
     side_c = 0
     side_d = 0
-
-
 
     # Shapes available
     possible_shapes = ["circle", "square", "rectangle", "triangle", "parallelogram", "trapezium"]
