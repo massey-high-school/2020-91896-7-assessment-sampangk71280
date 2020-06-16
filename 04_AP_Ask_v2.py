@@ -3,7 +3,6 @@
 # To do:
 # Create two functions to ask if they want to calculate area or perimeter
 
-
 # used for pi
 import math
 
@@ -44,62 +43,49 @@ def intcheck(question):
         except ValueError:
             print(error)
 
-# calculates the area
-def calculate_area(shape):
+def dimensions_needed(shape):
     if shape == "circle":
-        radius = intcheck("Radius: ") # only circle needs radius
-        area = math.pi * radius ** 2 # area of a circle
-
-    elif shape == "square" or shape == "rectangle":
-        length = intcheck("Length: ") # both square and rectangle needs length for area
-        area = length * length # area of a square
-        if shape == "rectangle":
-            width = intcheck("Width: ") # only rectangle needs width for area
-            area = length * width # area of a rectangle
-
-    elif shape == "triangle" or shape == "parallelogram":
-        # both triangle and parallelogram need base and height for area
-        base = intcheck("Base: ")
-        height = intcheck("Height: ")
-        if shape == "triangle":
-            area = 0.5 * base * height # area of triangle
-        if shape == "parallelogram":
-            area = base * height # area of parallelogram
-
-    elif shape == "trapezium":
-        side_a = intcheck("Side A: ")
-        side_b = intcheck("Side B: ")
-        height = intcheck("Height: ")
-        area = (side_a + side_b) / 2 * height # area of trapezium
-
-    return area
-
-def calculate_perimeter(shape):
-
-    if shape == "circle":
+        # gets radius
         radius = intcheck("Radius: ")
+        # calculates area and perimeter
+        area = math.pi * radius ** 2
         perimeter = 2 * math.pi * radius
 
     elif shape == "square" or shape == "rectangle":
+        # gets length
         length = intcheck("Length: ")
+        # calculates area and perimeter of a square
+        area = length * length
         perimeter = length * 4
         if shape == "rectangle":
+            # gets width
             width = intcheck("Width: ")
+            # calculates area and perimeter of a rectangle
+            area = length * width
             perimeter = (2 * length) + (2 * width)
 
     elif shape == "triangle" or shape == "parallelogram" or shape == "trapezium":
+        # gets height, side a, and side b (common between the three shapes)
         side_a = intcheck("Side A: ")
         side_b = intcheck("Side B: ")
-        perimeter = 2 * (side_a + side_b)
-        if shape == "triangle":
+        height = intcheck("Height: ")
+        # gets the remaining dimensions needed for each shape
+        if shape == "parallelogram":
+            base = intcheck("Base: ")
+            area = base * height
+            perimeter = 2 * (side_a + side_b)
+        elif shape == "triangle" or "trapezium":
             side_c = intcheck("Side C: ")
+            base = intcheck("Base: ")
+            area = 0.5 * base * height
             perimeter = side_a + side_b + side_c
         elif shape == "trapezium":
-            side_c = intcheck("Side D: ")
+            side_c = intcheck("Side C: ")
             side_d = intcheck("Side D: ")
-            perimeter =side_a + side_b + side_c + side_d
+            area = (side_a + side_b) / 2 * height
+            perimeter = side_a + side_b + side_c + side_d
 
-    return perimeter
+    return area, perimeter
 
 # Main Routine
 # Loops entire calculator
@@ -126,18 +112,18 @@ while keep_going == "":
 
     # asks user for shape
     shape = shape_checker("Please choose a shape to pick from: {} \nShape: ".format(choices), "Oops please choose a shape from the list!")
+    # asks user if they want to calculate area, perimeter, or both
     area_or_perimeter = input("Do you want to calculate area, perimeter or both?").lower()
 
+    area = dimensions_needed(shape)
+    perimeter = dimensions_needed(shape)
+    print(area, perimeter)
 
     if area_or_perimeter == "area":
-        area = calculate_area(shape)
         print("-----{}-----\nArea: {:.2f}\n".format(shape, area))
     elif area_or_perimeter == "perimeter":
-        perimeter = calculate_perimeter(shape)
         print("-----{}-----\nPerimeter {:.2f}\n".format(shape, perimeter))
     elif area_or_perimeter == "both":
-        area = calculate_area(shape)
-        perimeter = calculate_perimeter(shape)
         print("-----{}-----\nArea: {:.2f}\nPerimeter: {:.2f}\n".format(shape, area, perimeter))
     else:
         print("Please choose!")
