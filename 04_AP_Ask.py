@@ -74,6 +74,31 @@ def calculate_area(shape):
 
     return area
 
+def calculate_perimeter(shape):
+    if shape == "circle":
+        radius = intcheck("Radius: ")
+        perimeter = 2 * math.pi * radius
+
+    elif shape == "square" or shape == "rectangle":
+        length = intcheck("Length: ")
+        perimeter = length * 4
+        if shape == "rectangle":
+            width = intcheck("Width: ")
+            perimeter = (2 * length) + (2 * width)
+
+    elif shape == "triangle" or shape == "parallelogram" or shape == "trapezium":
+        side_a = intcheck("Side A: ")
+        side_b = intcheck("Side B: ")
+        perimeter = 2 * (side_a + side_b)
+        if shape == "triangle":
+            side_c = intcheck("Side C: ")
+            perimeter = side_a + side_b + side_c
+        elif shape == "trapezium":
+            side_c = intcheck("Side D: ")
+            side_d = intcheck("Side D: ")
+            perimeter =side_a + side_b + side_c + side_d
+
+    return perimeter
 
 # Main Routine
 # Loops entire calculator
@@ -105,7 +130,12 @@ while keep_going == "":
         area = calculate_area(shape)
         print("-----{}-----\nArea: {:.2f}\n".format(shape, area))
     elif area_or_perimeter == "perimeter":
+        perimeter = calculate_perimeter(shape)
+        print("-----{}-----\nPerimeter {:.2f}\n".format(shape, perimeter))
     elif area_or_perimeter == "both":
+        area = calculate_area(shape)
+        perimeter = calculate_perimeter(shape)
+        print("-----{}-----\nArea: {:.2f}\nPerimeter: {:.2f}\n".format(shape, area, perimeter))
     else:
         print("Please choose!")
 
