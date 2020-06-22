@@ -55,6 +55,7 @@ def area_or_perimeter():
         else:
             print("Please input a valid response!")
 
+# gets radius for circle and calculates area and perimeter
 def circle(ask):
     radius = intcheck("Radius: ")
     area = math.pi * radius ** 2
@@ -62,6 +63,7 @@ def circle(ask):
 
     return area, perimeter
 
+# gets length for square and calculate area nad perimeter
 def square(ask):
     length = intcheck("Length: ")
     area = length * length
@@ -69,7 +71,32 @@ def square(ask):
 
     return area, perimeter
 
+def rectangle(ask):
+    length = intcheck("Length: ")
+    width = intcheck ("Width: ")
+    area = length * width
+    perimeter = (2 * length) + (2 * width)
 
+    return area, perimeter
+
+def triangle(ask):
+    if ask == "area":
+        base = intcheck("Base: ")
+        height = intcheck("Height: ")
+        area = 0.5 * base * height
+        dimension.append(area)
+
+    elif ask == "perimeter":
+        side_a = intcheck("Side A:")
+        side_b = intcheck("Side B:")
+        side_c = intcheck("Side C:")
+        perimeter = side_a + side_b + side_c
+        dimension.append(nothing)
+        dimension.append(perimeter)
+
+    elif ask == "both":
+        dimension.append(area)
+        dimension.append(perimeter)
 
 # Main Routine
 # Loops entire calculator
@@ -97,16 +124,25 @@ while keep_going == "":
     # asks user for shape
     shape = shape_checker("Please choose a shape to pick from: {} \nShape: ".format(choices), "Oops please choose a shape from the list!")
 
-    if shape == "square":
-        response = area_or_perimeter()
-        length = square(response)
+    # asks user if they want to calculate area, perimeter, or both
+    response = area_or_perimeter().lower()
 
+    if shape == "circle":
+        dimension = circle(response)
+    elif shape == "square":
+        dimesnion = square(response)
+    elif shape == "rectangle":
+        dimension = rectangle(response)
+    elif shape == "triangle":
+        dimension = triangle(response)
+
+    if shape in possible_shapes:
         if response == "area":
-            print("-----{}-----\nArea: {:.2f}\n".format(shape, length[0]))
+            print("-----{}-----\nArea: {:.2f}\n".format(shape, dimension[0]))
         elif response == "perimeter":
-            print("-----{}-----\nArea: {:.2f}\n".format(shape, length[1]))
+            print("-----{}-----\nArea: {:.2f}\n".format(shape, dimension[1]))
         elif response == "both":
-            print("-----{}-----\nArea: {:.2f}\nPerimeter: {:.2f}".format(shape, length[0], length[1]))
+            print("-----{}-----\nArea: {:.2f}\nPerimeter: {:.2f}".format(shape, dimension[0], dimension[1]))
         else:
             print("Error")
 
