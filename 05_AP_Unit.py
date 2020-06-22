@@ -36,5 +36,5 @@ length = 2
 shape = "Square"
 area = 2
 perimeter = 8
-unit = unit_checker("What units are you using for your calculation?", "Please enter units and do not leave it blank!!", "no")
+unit = unit_checker("What units are you using for your calculation?", "Please enter units, not numbers, do not leave it blank!", "no")
 print("-----{}-----\nArea: {}{}\nPerimeter: {}{}".format(shape, area, unit, perimeter,unit))
