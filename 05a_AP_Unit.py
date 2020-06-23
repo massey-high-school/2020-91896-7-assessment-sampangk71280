@@ -1,7 +1,7 @@
 # Area Perimeter - Component 4 and 5 together
 
 # To do:
-# comebine component 4 and 5
+# combine component 4 and 5
 
 # used for pi
 import math
@@ -101,7 +101,7 @@ def calculate_perimeter(shape):
     return perimeter
 
 # recycled not blank function
-def unit_checker(question, error_msg, num_ok):
+def not_blank(question, error_msg, num_ok):
     error = error_msg #error message
     valid = False
     while not valid:
@@ -151,9 +151,10 @@ while keep_going == "":
 
     # asks user for shape
     shape = shape_checker("Please choose a shape to pick from: {} \nShape: ".format(choices), "Oops please choose a shape from the list!")
-    unit = unit_checker("What units are you using for your calculation?",
+    unit = not_blank("What units are you using for your calculation?",
                         "Please enter units, not numbers, do not leave it blank!", "no")
-    area_or_perimeter = input("Do you want to calculate area, perimeter or both?").lower()
+    area_or_perimeter = not_blank("Do you want to calculate area, perimeter or both?",
+                                  "Please choose area, perimeter, or both!", "no").lower()
 
 
     if area_or_perimeter == "area":
@@ -170,6 +171,7 @@ while keep_going == "":
         print("Please choose!")
 
     keep_going = input("Do you want to continue using the calculator? Press <enter> for yes and any key for no")
+    print()
 
 
 
