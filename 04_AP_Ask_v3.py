@@ -84,19 +84,16 @@ def triangle(ask):
         base = intcheck("Base: ")
         height = intcheck("Height: ")
         area = 0.5 * base * height
-        dimension.append(area)
+        return area
 
     elif ask == "perimeter":
         side_a = intcheck("Side A:")
         side_b = intcheck("Side B:")
         side_c = intcheck("Side C:")
         perimeter = side_a + side_b + side_c
-        dimension.append(nothing)
-        dimension.append(perimeter)
 
-    elif ask == "both":
-        dimension.append(area)
-        dimension.append(perimeter)
+        if ask == "both":
+            return area, perimeter
 
 # Main Routine
 # Loops entire calculator
@@ -130,7 +127,7 @@ while keep_going == "":
     if shape == "circle":
         dimension = circle(response)
     elif shape == "square":
-        dimesnion = square(response)
+        dimension = square(response)
     elif shape == "rectangle":
         dimension = rectangle(response)
     elif shape == "triangle":
