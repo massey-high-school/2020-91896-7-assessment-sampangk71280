@@ -58,42 +58,52 @@ def area_or_perimeter():
 # gets radius for circle and calculates area and perimeter
 def circle(ask):
     radius = intcheck("Radius: ")
+    #formulas for area and perimeter
     area = math.pi * radius ** 2
     perimeter = 2 * math.pi * radius
 
     return area, perimeter
 
-# gets length for square and calculate area nad perimeter
+# gets length for square and calculate area and perimeter
 def square(ask):
     length = intcheck("Length: ")
+    # formulas for area and perimeter
     area = length * length
     perimeter =  length * 4
 
     return area, perimeter
 
+# gets length and width for rectangle and calculates area and perimter
 def rectangle(ask):
     length = intcheck("Length: ")
     width = intcheck ("Width: ")
+    #formulas for area and perimeter
     area = length * width
     perimeter = (2 * length) + (2 * width)
 
     return area, perimeter
 
+# not working
 def triangle(ask):
-    if ask == "area":
-        base = intcheck("Base: ")
-        height = intcheck("Height: ")
-        area = 0.5 * base * height
-        return area
+    base = intcheck("Base: ")
+    height = intcheck("Height: ")
+    area = 0.5 * base * height
+    side_a = intcheck("Side A:")
+    side_b = intcheck("Side B:")
+    side_c = intcheck("Side C:")
+    perimeter = side_a + side_b + side_c
 
-    elif ask == "perimeter":
-        side_a = intcheck("Side A:")
-        side_b = intcheck("Side B:")
-        side_c = intcheck("Side C:")
-        perimeter = side_a + side_b + side_c
+    return area, perimeter
 
-        if ask == "both":
-            return area, perimeter
+def parallelogram(ask):
+    base = intcheck("Base: ")
+    height = intcheck("Height: ")
+    side_a = intcheck("Side A:")
+    side_b = intcheck("Side B:")
+
+
+
+
 
 # Main Routine
 # Loops entire calculator
