@@ -170,20 +170,31 @@ while keep_going == "":
     if area_or_perimeter == "area":
         area = calculate_area(shape)
         print("-----{}-----\nArea: {:.2f}{}\n".format(shape, area,unit))
+        measurement_history.append(area)
+
     # user chooses perimeter and prints it out
     elif area_or_perimeter == "perimeter":
         perimeter = calculate_perimeter(shape)
         print("-----{}-----\nPerimeter {:.2f}{}\n".format(shape, perimeter,unit))
+        measurement_history.append(perimeter)
     # user chooses both and prints both area and perimeter
     elif area_or_perimeter == "both":
         area = calculate_area(shape)
         perimeter = calculate_perimeter(shape)
         print("-----{}-----\nArea: {:.2f}{}\nPerimeter: {:.2f}{}\n".format(shape, area, unit, perimeter, unit))
+        measurement_history.append(area)
+        measurement_history.append(perimeter)
 
+
+    shape_history.append(shape)
+    shape_history.append(measurement_history)
+    history.append(shape_history)
     keep_going = input("Do you want to continue using the calculator? Press <enter> for yes and any key for no")
-    print()
+    print(history)
 
-
+print("*****HISTORY*****")
+for item in history:
+    print("Shape: {}\nArea: {}\nPerimeter: {} ".format(item[0], item[1], item[2]))
 
 
 

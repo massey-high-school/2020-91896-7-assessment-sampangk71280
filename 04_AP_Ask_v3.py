@@ -83,24 +83,50 @@ def rectangle(ask):
 
     return area, perimeter
 
-# not working
 def triangle(ask):
-    base = intcheck("Base: ")
-    height = intcheck("Height: ")
-    area = 0.5 * base * height
-    side_a = intcheck("Side A:")
-    side_b = intcheck("Side B:")
-    side_c = intcheck("Side C:")
-    perimeter = side_a + side_b + side_c
-
-    return area, perimeter
+    # gets base and height, only calculates area
+    if ask == "area":
+        base = intcheck("Base: ")
+        height = intcheck("Height: ")
+        area = 0.5 * base * height
+        return area
+    # gets three sides, only calculates perimeter
+    elif ask == "perimeter":
+        side_a = intcheck("Side A:")
+        side_b = intcheck("Side B:")
+        side_c = intcheck("Side C:")
+        perimeter = side_a + side_b + side_c
+        return perimeter
+    # gets all dimensions and calculates area and perimeter
+    elif ask == "both":
+        base = intcheck("Base: ")
+        height = intcheck("Height: ")
+        area = 0.5 * base * height
+        side_a = intcheck("Side A:")
+        side_b = intcheck("Side B:")
+        side_c = intcheck("Side C:")
+        perimeter = side_a + side_b + side_c
+        return area, perimeter
 
 def parallelogram(ask):
-    base = intcheck("Base: ")
-    height = intcheck("Height: ")
-    side_a = intcheck("Side A:")
-    side_b = intcheck("Side B:")
-
+    if ask == "area":
+        base = intcheck("Base: ")
+        height = intcheck("Height: ")
+        area = base * height
+        return area
+    elif ask == "perimeter":
+        side_a = intcheck("Side A:")
+        side_b = intcheck("Side B:")
+        perimeter = 2 * (side_a + side_b)
+        return perimeter
+    elif ask == "both":
+        base = intcheck("Base: ")
+        height = intcheck("Height: ")
+        area = base * height
+        side_a = intcheck("Side A:")
+        side_b = intcheck("Side B:")
+        perimeter = 2 * (side_a + side_b)
+        return area, perimeter
 
 
 
@@ -142,12 +168,14 @@ while keep_going == "":
         dimension = rectangle(response)
     elif shape == "triangle":
         dimension = triangle(response)
+    elif shape == "parallelogram":
+        dimension = parallelogram(response)
 
     if shape in possible_shapes:
         if response == "area":
-            print("-----{}-----\nArea: {:.2f}\n".format(shape, dimension[0]))
+            print("-----{}-----\nArea: {:.2f}\n".format(shape, dimension))
         elif response == "perimeter":
-            print("-----{}-----\nArea: {:.2f}\n".format(shape, dimension[1]))
+            print("-----{}-----\nArea: {:.2f}\n".format(shape, dimension))
         elif response == "both":
             print("-----{}-----\nArea: {:.2f}\nPerimeter: {:.2f}".format(shape, dimension[0], dimension[1]))
         else:
