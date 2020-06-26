@@ -1,3 +1,5 @@
+
+
 # Area Perimeter - Component 4
 
 # To do:
@@ -61,7 +63,6 @@ def circle(ask):
     #formulas for area and perimeter
     area = math.pi * radius ** 2
     perimeter = 2 * math.pi * radius
-
     return area, perimeter
 
 # gets length for square and calculate area and perimeter
@@ -70,7 +71,6 @@ def square(ask):
     # formulas for area and perimeter
     area = length * length
     perimeter =  length * 4
-
     return area, perimeter
 
 # gets length and width for rectangle and calculates area and perimter
@@ -128,8 +128,29 @@ def parallelogram(ask):
         perimeter = 2 * (side_a + side_b)
         return area, perimeter
 
-
-
+def trapzeium(ask):
+    if ask == "area":
+        height = intcheck("Height: ")
+        side_a = intcheck("Side A: ")
+        side_b = intcheck("Side B: ")
+        area = (side_a + side_b)/2 * height
+        return area
+    elif ask == "perimeter":
+        side_a = intcheck("Side A:")
+        side_b = intcheck("Side B:")
+        side_c = intcheck("Side C:")
+        side_d = intcheck("Side D: ")
+        perimeter = side_a + side_b + side_c + side_d
+        return perimeter
+    elif ask == "both":
+        height = intcheck("Height: ")
+        side_a = intcheck("Side A: ")
+        side_b = intcheck("Side B: ")
+        area = (side_a + side_b) / 2 * height
+        side_c = intcheck("Side C:")
+        side_d = intcheck("Side D: ")
+        perimeter = side_a + side_b + side_c + side_d
+        return area, perimeter
 
 # Main Routine
 # Loops entire calculator
@@ -170,6 +191,8 @@ while keep_going == "":
         dimension = triangle(response)
     elif shape == "parallelogram":
         dimension = parallelogram(response)
+    elif shape == "trapezium":
+        dimension = trapzeium(response)
 
     if shape in possible_shapes:
         if response == "area":
@@ -178,8 +201,6 @@ while keep_going == "":
             print("-----{}-----\nArea: {:.2f}\n".format(shape, dimension))
         elif response == "both":
             print("-----{}-----\nArea: {:.2f}\nPerimeter: {:.2f}".format(shape, dimension[0], dimension[1]))
-        else:
-            print("Error")
 
 
 

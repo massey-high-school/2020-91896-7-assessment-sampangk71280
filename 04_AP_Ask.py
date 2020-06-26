@@ -95,7 +95,7 @@ def calculate_perimeter(shape):
             side_c = intcheck("Side C: ")
             perimeter = side_a + side_b + side_c
         elif shape == "trapezium":
-            side_c = intcheck("Side D: ")
+            side_c = intcheck("Side C: ")
             side_d = intcheck("Side D: ")
             perimeter =side_a + side_b + side_c + side_d
 
