@@ -81,7 +81,12 @@ def rectangle(ask):
     area = length * width
     perimeter = (2 * length) + (2 * width)
 
-    return area, perimeter
+    if ask == "area":
+        return area
+    elif ask == "perimeter":
+        return perimeter
+    elif ask == "both":
+        return area, perimeter
 
 def triangle(ask):
     # gets base and height, only calculates area
@@ -98,7 +103,7 @@ def triangle(ask):
         perimeter = side_a + side_b + side_c
         return perimeter
     # gets all dimensions and calculates area and perimeter
-    elif ask == "both" or ask == "both":
+    elif ask == "both" or ask == "b":
         base = intcheck("Base: ")
         height = intcheck("Height: ")
         area = 0.5 * base * height
@@ -191,17 +196,6 @@ measure_history = [] # contains all measurements
 keep_going = ""
 while keep_going == "":
 
-    # set lengths to zero until needed
-    radius = 0
-    length = 0
-    width = 0
-    base = 0
-    height = 0
-    side_a = 0
-    side_b = 0
-    side_c = 0
-    side_d = 0
-
     # Shapes available
     possible_shapes = ["circle", "square", "rectangle", "triangle", "parallelogram", "trapezium"]
 
@@ -231,17 +225,18 @@ while keep_going == "":
     elif shape == "trapezium":
         dimension = trapzeium(response)
 
+    #print(dimension[0])
+
     if shape in possible_shapes:
         if response == "area" or response == "a":
-            print("-----{}-----\nArea: {:.2f}{}^2\n".format(shape, dimension[0], unit))
+            print("-----{}-----\nArea: {:.2f}{}^2\n".format(shape, dimension, unit))
         elif response == "perimeter" or response == "p":
-            print("-----{}-----\nPerimeter: {:.2f}{}\n".format(shape, dimension[1], unit))
+            print("-----{}-----\nPerimeter: {:.2f}{}\n".format(shape, dimension, unit))
         elif response == "both" or response == "b":
-            print("-----{}-----\nArea: {:.2f}{}^2\nPerimeter: {:.2f}{}\n".format(shape, dimension[0], unit, dimension[1],unit))
+            print("-----{}-----\nArea: {:.2f}{}^2\nPerimeter: {:.2f}{}\n".format(shape, dimension[0], unit, dimension[1] ,unit))
 
     keep_going = input("Do you want to continue using the calculator? Press <enter> for yes and any key for no")
     print()
-
 
 
 
