@@ -241,21 +241,16 @@ while keep_going == "":
     elif shape == "trapezium":
         dimension = trapzeium(response)
 
-    #print(dimension[0])
-    dimension_list = []
     if shape in possible_shapes:
         if response == "area" or response == "a":
             area += dimension
-            print("-----{}-----\nArea: {:.2f}{}^2\n".format(shape, area, unit)) # prints out area measurement
-            shape_history.append(area)
         elif response == "perimeter" or response == "p":
             perimeter += dimension
-            print("-----{}-----\nPerimeter: {:.2f}{}\n".format(shape, perimeter, unit)) # prints out perimeter measurement
-            shape_history.append(perimeter)
         elif response == "both" or response == "b":
             area += dimension
             perimeter += dimension
-            print("-----{}-----\nArea: {:.2f}{}^2\nPerimeter: {:.2f}{}\n".format(shape, dimension[0], unit, dimension[1] ,unit)) # prints out both measurements
+
+        print("-----{}-----\nArea: {:.2f}{}^2\nPerimeter: {:.2f}{}\n".format(shape, area, unit, perimeter ,unit)) # prints out both measurements
         shape_history.append(area)
         shape_history.append(perimeter)
 
