@@ -63,7 +63,13 @@ def circle(ask):
     #formulas for area and perimeter
     area = math.pi * radius ** 2
     perimeter = 2 * math.pi * radius
-    return area, perimeter
+
+    if ask == "area" or "a":
+        return area
+    elif ask == "perimeter" or "p":
+        return perimeter
+    elif ask == "both" or "b":
+        return area, perimeter
 
 # gets length for square and calculate area and perimeter
 def square(ask):
@@ -71,7 +77,13 @@ def square(ask):
     # formulas for area and perimeter
     area = length * length
     perimeter =  length * 4
-    return area, perimeter
+
+    if ask == "area" or "a":
+        return area
+    elif ask == "perimeter" or "p":
+        return perimeter
+    elif ask == "both" or "b":
+        return area, perimeter
 
 # gets length and width for rectangle and calculates area and perimter
 def rectangle(ask):
@@ -81,11 +93,11 @@ def rectangle(ask):
     area = length * width
     perimeter = (2 * length) + (2 * width)
 
-    if ask == "area":
+    if ask == "area" or "a":
         return area
-    elif ask == "perimeter":
+    elif ask == "perimeter" or "p":
         return perimeter
-    elif ask == "both":
+    elif ask == "both" or "b":
         return area, perimeter
 
 def triangle(ask):
@@ -187,15 +199,14 @@ def not_blank(question, error_msg, num_ok):
         else:
             return unit
 
-history = [] # master list
-shape_history = [] # shape history
-measure_history = [] # contains all measurements
 
 # Main Routine
+
+history = [] # master list
 # Loops entire calculator
 keep_going = ""
 while keep_going == "":
-
+    shape_history = []  # shape history
     # Shapes available
     possible_shapes = ["circle", "square", "rectangle", "triangle", "parallelogram", "trapezium"]
 
@@ -205,6 +216,7 @@ while keep_going == "":
 
     # asks user for shape
     shape = shape_checker("Please choose a shape to pick from: {} \nShape: ".format(choices), "Oops please choose a shape from the list!")
+    shape_history.append(shape) # puts shape in list
     # asks user for unit, accepts any letters but not numbers/blank
     unit = not_blank("What units are you using for your calculation?",
                      "Please enter units, not numbers, do not leave it blank!", "no")
@@ -226,19 +238,29 @@ while keep_going == "":
         dimension = trapzeium(response)
 
     #print(dimension[0])
-
+    dimension_list = []
     if shape in possible_shapes:
         if response == "area" or response == "a":
-            print("-----{}-----\nArea: {:.2f}{}^2\n".format(shape, dimension, unit))
+            print("-----{}-----\nArea: {:.2f}{}^2\n".format(shape, dimension, unit)) # prints out area measurement
+            shape_history.append(dimension)
         elif response == "perimeter" or response == "p":
-            print("-----{}-----\nPerimeter: {:.2f}{}\n".format(shape, dimension, unit))
+            print("-----{}-----\nPerimeter: {:.2f}{}\n".format(shape, dimension, unit)) # prints out perimeter measurement
+            shape_history.append(dimension)
         elif response == "both" or response == "b":
-            print("-----{}-----\nArea: {:.2f}{}^2\nPerimeter: {:.2f}{}\n".format(shape, dimension[0], unit, dimension[1] ,unit))
+            print("-----{}-----\nArea: {:.2f}{}^2\nPerimeter: {:.2f}{}\n".format(shape, dimension[0], unit, dimension[1] ,unit)) # prints out both measurements
+            shape_history.append(dimension[0])
+            shape_history.append(dimension[1])
+
+    history.append(shape_history)
 
     keep_going = input("Do you want to continue using the calculator? Press <enter> for yes and any key for no")
     print()
 
+print(history)
 
+print("*****HISTORY*****")
+for item in history:
+    print("-----{}-----\nArea:{} {}\nPerimeter:{} {}".format(item[0], item[1], unit, item[2], unit))
 
 
 
