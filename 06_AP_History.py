@@ -78,11 +78,11 @@ def square(ask):
     area = length * length
     perimeter =  length * 4
 
-    if ask == "area" or "a":
+    if ask == "area" or ask == "a":
         return area
-    elif ask == "perimeter" or "p":
+    elif ask == "perimeter" or ask == "p":
         return perimeter
-    elif ask == "both" or "b":
+    elif ask == "both" or ask == "b":
         return area, perimeter
 
 # gets length and width for rectangle and calculates area and perimter
@@ -93,11 +93,11 @@ def rectangle(ask):
     area = length * width
     perimeter = (2 * length) + (2 * width)
 
-    if ask == "area" or "a":
+    if ask == "area" or ask == "a":
         return area
-    elif ask == "perimeter" or "p":
+    elif ask == "perimeter" or ask == "p":
         return perimeter
-    elif ask == "both" or "b":
+    elif ask == "both" or ask == "b":
         return area, perimeter
 
 def triangle(ask):
@@ -228,6 +228,7 @@ while keep_going == "":
     # asks user if they want to calculate area, perimeter, or both
     response = area_or_perimeter().lower()
 
+    # calls different function for each shape
     if shape == "circle":
         dimension = circle(response)
     elif shape == "square":
@@ -241,29 +242,28 @@ while keep_going == "":
     elif shape == "trapezium":
         dimension = trapzeium(response)
 
+    # adds measurement to area and/or perimeter
     if shape in possible_shapes:
         if response == "area" or response == "a":
             area += dimension
         elif response == "perimeter" or response == "p":
             perimeter += dimension
         elif response == "both" or response == "b":
-            area += dimension
-            perimeter += dimension
+            area += dimension[0]
+            perimeter += dimension[1]
 
-        print("-----{}-----\nArea: {:.2f}{}^2\nPerimeter: {:.2f}{}\n".format(shape, area, unit, perimeter ,unit)) # prints out both measurements
-        shape_history.append(area)
-        shape_history.append(perimeter)
+        # prints out calculation
+        print("-----{}-----\nArea: {:.2f}{}^2\nPerimeter: {:.2f}{}\n".format(shape, area, unit, perimeter ,unit))
+        shape_history.append(area) # adds area measurement to shape history
+        shape_history.append(perimeter) # adds perimeter measure to shape history
 
-    history.append(shape_history)
+    history.append(shape_history) # adds shape_history to master history list (list within a list)
 
+    # asks user if they want to continue using calculator
     keep_going = input("Do you want to continue using the calculator? Press <enter> for yes and any key for no")
     print()
 
-print(history)
-
 print("*****HISTORY*****")
+# prints out calculation history
 for item in history:
-    print("-----{}-----\nArea:{} {}\nPerimeter:{} {}".format(item[0], item[1], unit, item[2], unit))
-
-
-
+    print("-----{}-----\nArea:{} {}\nPerimeter:{} {}\n".format(item[0], item[1], unit, item[2], unit))
