@@ -207,6 +207,7 @@ history = [] # master list
 keep_going = ""
 while keep_going == "":
 
+    # set to zero at the beginning and dimension will be added
     area = 0
     perimeter = 0
 
