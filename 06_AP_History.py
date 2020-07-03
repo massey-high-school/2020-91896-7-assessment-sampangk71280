@@ -64,11 +64,11 @@ def circle(ask):
     area = math.pi * radius ** 2
     perimeter = 2 * math.pi * radius
 
-    if ask == "area" or "a":
+    if ask == "area" or ask == "a":
         return area
-    elif ask == "perimeter" or "p":
+    elif ask == "perimeter" or ask == "p":
         return perimeter
-    elif ask == "both" or "b":
+    elif ask == "both" or ask =="b":
         return area, perimeter
 
 # gets length for square and calculate area and perimeter
@@ -225,7 +225,6 @@ while keep_going == "":
     # asks user for unit, accepts any letters but not numbers/blank
     unit = not_blank("What units are you using for your calculation?",
                      "Please enter units, not numbers, do not leave it blank!", "no")
-
     # asks user if they want to calculate area, perimeter, or both
     response = area_or_perimeter().lower()
 
@@ -254,7 +253,7 @@ while keep_going == "":
             perimeter += dimension[1]
 
         # prints out calculation
-        print("-----{}-----\nArea: {:.2f}{}^2\nPerimeter: {:.2f}{}\n".format(shape, area, unit, perimeter ,unit))
+        print("-----{}-----\nArea: {:.2f}{}^2\nPerimeter: {:.2f}{}\n".format(shape.capitalize(), area, unit, perimeter ,unit)) # .capitalize() makes the first letter uppercase
         shape_history.append(area) # adds area measurement to shape history
         shape_history.append(perimeter) # adds perimeter measure to shape history
 
