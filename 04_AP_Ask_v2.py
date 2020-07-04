@@ -1,7 +1,10 @@
-# Area Perimeter - Component
+# Area Perimeter - Component 6
 
 # To do:
-# Create two functions to ask if they want to calculate area or perimeter
+# put shapes into a shape list
+# put measurements into a list
+# put shapes and measurements into one master list
+# print out master list
 
 # used for pi
 import math
@@ -43,79 +46,171 @@ def intcheck(question):
         except ValueError:
             print(error)
 
-# calculates the area
-def calculate_area(shape):
-    if shape == "circle":
-        radius = intcheck("Radius: ") # only circle needs radius
-        area = math.pi * radius ** 2 # area of a circle
+def area_or_perimeter():
+    options = ["a", "area", "p", "perimeter", "b", "both"]
+    valid = False
+    while not valid:
+        response = input("Do you want to calculate the area (a), perimeter (p), or both (b)?").lower()
 
-    elif shape == "square" or shape == "rectangle":
-        length = intcheck("Length: ") # both square and rectangle needs length for area
-        area = length * length # area of a square
-        if shape == "rectangle":
-            width = intcheck("Width: ") # only rectangle needs width for area
-            area = length * width # area of a rectangle
+        if response in options:
+            return response
+        else:
+            print("Please input a valid response!")
 
-    elif shape == "triangle" or shape == "parallelogram":
-        # both triangle and parallelogram need base and height for area
+# gets radius for circle and calculates area and perimeter
+def circle(ask):
+    radius = intcheck("Radius: ")
+    #formulas for area and perimeter
+    area = math.pi * radius ** 2
+    perimeter = 2 * math.pi * radius
+
+    if ask == "area" or ask == "a":
+        return area
+    elif ask == "perimeter" or ask == "p":
+        return perimeter
+    elif ask == "both" or ask =="b":
+        return area, perimeter
+
+# gets length for square and calculate area and perimeter
+def square(ask):
+    length = intcheck("Length: ")
+    # formulas for area and perimeter
+    area = length * length
+    perimeter =  length * 4
+
+    if ask == "area" or ask == "a":
+        return area
+    elif ask == "perimeter" or ask == "p":
+        return perimeter
+    elif ask == "both" or ask == "b":
+        return area, perimeter
+
+# gets length and width for rectangle and calculates area and perimter
+def rectangle(ask):
+    length = intcheck("Length: ")
+    width = intcheck ("Width: ")
+    #formulas for area and perimeter
+    area = length * width
+    perimeter = (2 * length) + (2 * width)
+
+    if ask == "area" or ask == "a":
+        return area
+    elif ask == "perimeter" or ask == "p":
+        return perimeter
+    elif ask == "both" or ask == "b":
+        return area, perimeter
+
+def triangle(ask):
+    # gets base and height, only calculates area
+    if ask == "area" or ask == "a":
         base = intcheck("Base: ")
         height = intcheck("Height: ")
-        if shape == "triangle":
-            area = 0.5 * base * height # area of triangle
-        if shape == "parallelogram":
-            area = base * height # area of parallelogram
-
-    elif shape == "trapezium":
-        side_a = intcheck("Side A: ")
-        side_b = intcheck("Side B: ")
+        area = 0.5 * base * height
+        return area
+    # gets three sides, only calculates perimeter
+    elif ask == "perimeter" or ask == "p":
+        side_a = intcheck("Side A:")
+        side_b = intcheck("Side B:")
+        side_c = intcheck("Side C:")
+        perimeter = side_a + side_b + side_c
+        return perimeter
+    # gets all dimensions and calculates area and perimeter
+    elif ask == "both" or ask == "b":
+        base = intcheck("Base: ")
         height = intcheck("Height: ")
-        area = (side_a + side_b) / 2 * height # area of trapezium
+        area = 0.5 * base * height
+        side_a = intcheck("Side A:")
+        side_b = intcheck("Side B:")
+        side_c = intcheck("Side C:")
+        perimeter = side_a + side_b + side_c
+        return area, perimeter
 
-    return area
+def parallelogram(ask):
+    # gets base and height, only calculates area
+    if ask == "area" or ask == "a":
+        base = intcheck("Base: ")
+        height = intcheck("Height: ")
+        area = base * height
+        return area
+    # gets three sides, only calculates perimeter
+    elif ask == "perimeter" or ask == "p":
+        side_a = intcheck("Side A:")
+        side_b = intcheck("Side B:")
+        perimeter = 2 * (side_a + side_b)
+        return perimeter
+    elif ask == "both" or  ask == "b":
+    # gets all dimensions and calculates area and perimter
+        base = intcheck("Base: ")
+        height = intcheck("Height: ")
+        area = base * height
+        side_a = intcheck("Side A:")
+        side_b = intcheck("Side B:")
+        perimeter = 2 * (side_a + side_b)
+        return area, perimeter
 
-def calculate_perimeter(shape):
-
-    if shape == "circle":
-        radius = intcheck("Radius: ")
-        perimeter = 2 * math.pi * radius
-
-    elif shape == "square" or shape == "rectangle":
-        length = intcheck("Length: ")
-        perimeter = length * 4
-        if shape == "rectangle":
-            width = intcheck("Width: ")
-            perimeter = (2 * length) + (2 * width)
-
-    elif shape == "triangle" or shape == "parallelogram" or shape == "trapezium":
+def trapzeium(ask):
+    # gets height and two sides, only calculates area
+    if ask == "area" or ask == "a":
+        height = intcheck("Height: ")
         side_a = intcheck("Side A: ")
         side_b = intcheck("Side B: ")
-        perimeter = 2 * (side_a + side_b)
-        if shape == "triangle":
-            side_c = intcheck("Side C: ")
-            perimeter = side_a + side_b + side_c
-        elif shape == "trapezium":
-            side_c = intcheck("Side D: ")
-            side_d = intcheck("Side D: ")
-            perimeter =side_a + side_b + side_c + side_d
+        area = (side_a + side_b)/2 * height
+        return area
+    elif ask == "perimeter" or ask == "p":
+    # gets all sides, only calculates perimeter
+        side_a = intcheck("Side A:")
+        side_b = intcheck("Side B:")
+        side_c = intcheck("Side C:")
+        side_d = intcheck("Side D: ")
+        perimeter = side_a + side_b + side_c + side_d
+        return perimeter
+    elif ask == "both" or ask == "b":
+    # gets all dimensions, calculates height and perimeter
+        height = intcheck("Height: ")
+        side_a = intcheck("Side A: ")
+        side_b = intcheck("Side B: ")
+        area = (side_a + side_b) / 2 * height
+        side_c = intcheck("Side C:")
+        side_d = intcheck("Side D: ")
+        perimeter = side_a + side_b + side_c + side_d
+        return area, perimeter
 
-    return perimeter
+def not_blank(question, error_msg, num_ok):
+    error = error_msg  # error message
+    valid = False
+    while not valid:
+        unit = input(question)
+        has_errors = ""
+
+        if num_ok != "yes":
+            #  look at each character in string and if it's a number, complain
+            for letter in unit:
+                if letter.isdigit() == True:
+                    has_errors = "yes"
+                    break
+
+        if unit == "":
+            # prints error when left blank
+            print(error)
+            continue
+        elif has_errors != "":  # prints errors when there is a number (if num_ok is no)
+            print(error)
+            continue
+        else:
+            return unit
+
 
 # Main Routine
+
 # Loops entire calculator
 keep_going = ""
 while keep_going == "":
 
-    # set lengths to zero until needed
-    radius = 0
-    length = 0
-    width = 0
-    base = 0
-    height = 0
-    side_a = 0
-    side_b = 0
-    side_c = 0
-    side_d = 0
+    # set to zero at the beginning and dimension will be added
+    area = 0
+    perimeter = 0
 
+    shape_history = []  # shape history
     # Shapes available
     possible_shapes = ["circle", "square", "rectangle", "triangle", "parallelogram", "trapezium"]
 
@@ -125,23 +220,35 @@ while keep_going == "":
 
     # asks user for shape
     shape = shape_checker("Please choose a shape to pick from: {} \nShape: ".format(choices), "Oops please choose a shape from the list!")
+    # asks user for unit, accepts any letters but not numbers/blank
+    unit = not_blank("What units are you using for your calculation?",
+                     "Please enter units, not numbers, do not leave it blank!", "no")
     # asks user if they want to calculate area, perimeter, or both
-    area_or_perimeter = input("Do you want to calculate area, perimeter or both?").lower()
+    response = area_or_perimeter().lower()
 
+    # calls different function for each shape
+    if shape == "circle":
+        dimension = circle(response)
+    elif shape == "square":
+        dimension = square(response)
+    elif shape == "rectangle":
+        dimension = rectangle(response)
+    elif shape == "triangle":
+        dimension = triangle(response)
+    elif shape == "parallelogram":
+        dimension = parallelogram(response)
+    elif shape == "trapezium":
+        dimension = trapzeium(response)
 
-    if area_or_perimeter == "area":
-        area = calculate_area(shape)
-        print("-----{}-----\nArea: {:.2f}\n".format(shape, area))
-    elif area_or_perimeter == "perimeter":
-        perimeter = calculate_perimeter(shape)
-        print("-----{}-----\nPerimeter {:.2f}\n".format(shape, perimeter))
-    elif area_or_perimeter == "both":
-        area = calculate_area(shape)
-        perimeter = calculate_perimeter(shape)
-        print("-----{}-----\nArea: {:.2f}\nPerimeter: {:.2f}\n".format(shape, area, perimeter))
-    else:
-        print("Please choose!")
+    # adds measurement to area and/or perimeter
+    if shape in possible_shapes:
+        if response == "area" or response == "a":
+            area += dimension
+        elif response == "perimeter" or response == "p":
+            perimeter += dimension
+        elif response == "both" or response == "b":
+            area += dimension[0]
+            perimeter += dimension[1]
 
-
-
-
+        # prints out calculation
+        print("-----{}-----\nArea: {:.2f}{}^2\nPerimeter: {:.2f}{}\n".format(shape.capitalize(), area, unit, perimeter ,unit)) # .capitalize() makes the first letter uppercase

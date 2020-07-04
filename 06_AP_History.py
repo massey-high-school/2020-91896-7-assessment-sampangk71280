@@ -47,7 +47,7 @@ def intcheck(question):
             print(error)
 
 def area_or_perimeter():
-    options = ["a", "area", "p", "perimeter", "b", "both"]
+    options = ["a", "area", "p", "perimeter", "b", "both"] # gives users options
     valid = False
     while not valid:
         response = input("Do you want to calculate the area (a), perimeter (p), or both (b)?").lower()
@@ -55,7 +55,8 @@ def area_or_perimeter():
         if response in options:
             return response
         else:
-            print("Please input a valid response!")
+            print("Please choose a, p or b!") # error message
+
 
 # gets radius for circle and calculates area and perimeter
 def circle(ask):
@@ -100,6 +101,7 @@ def rectangle(ask):
     elif ask == "both" or ask == "b":
         return area, perimeter
 
+# gets dimensions for triangle and calculates area and perimeter
 def triangle(ask):
     # gets base and height, only calculates area
     if ask == "area" or ask == "a":
@@ -125,6 +127,7 @@ def triangle(ask):
         perimeter = side_a + side_b + side_c
         return area, perimeter
 
+# gets dimensions for parallelogram, calculates area and perimeter
 def parallelogram(ask):
     # gets base and height, only calculates area
     if ask == "area" or ask == "a":
@@ -148,6 +151,7 @@ def parallelogram(ask):
         perimeter = 2 * (side_a + side_b)
         return area, perimeter
 
+# gets dimensions for trapezium, calculates area and perimeter
 def trapzeium(ask):
     # gets height and two sides, only calculates area
     if ask == "area" or ask == "a":
@@ -175,6 +179,7 @@ def trapzeium(ask):
         perimeter = side_a + side_b + side_c + side_d
         return area, perimeter
 
+# recycled, checks that user inputs something
 def not_blank(question, error_msg, num_ok):
     error = error_msg  # error message
     valid = False
@@ -201,7 +206,6 @@ def not_blank(question, error_msg, num_ok):
 
 
 # Main Routine
-
 history = [] # master list
 # Loops entire calculator
 keep_going = ""
@@ -253,9 +257,10 @@ while keep_going == "":
             perimeter += dimension[1]
 
         # prints out calculation
-        print("-----{}-----\nArea: {:.2f}{}^2\nPerimeter: {:.2f}{}\n".format(shape.capitalize(), area, unit, perimeter ,unit)) # .capitalize() makes the first letter uppercase
+        print("-----{}-----\nArea: {:.2f}{}^2\nPerimeter: {:.2f}{}\n".format(shape.capitalize(), area, unit, perimeter, unit)) # .capitalize() makes the first letter uppercase
         shape_history.append(area) # adds area measurement to shape history
         shape_history.append(perimeter) # adds perimeter measure to shape history
+        shape_history.append(unit) # adds unit to shape history
 
     history.append(shape_history) # adds shape_history to master history list (list within a list)
 
@@ -266,4 +271,4 @@ while keep_going == "":
 print("*****HISTORY*****")
 # prints out calculation history
 for item in history:
-    print("-----{}-----\nArea:{} {}\nPerimeter:{} {}\n".format(item[0], item[1], unit, item[2], unit))
+    print("-----{}-----\nArea:{} {}^2\nPerimeter:{} {}\n".format(item[0].capitalize(), item[1], item[3], item[2], item[3]))
