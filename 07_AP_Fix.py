@@ -76,14 +76,14 @@ def triangle(ask):
         base = intcheck("Base: ")
         height = intcheck("Height: ")
         area = 0.5 * base * height
-        return area
+        perimeter = "n/a"
     # gets three sides, only calculates perimeter
     elif ask == "perimeter" or ask == "p":
         side_a = intcheck("Side A:")
         side_b = intcheck("Side B:")
         side_c = intcheck("Side C:")
+        area = "n/a"
         perimeter = side_a + side_b + side_c
-        return perimeter
     # gets all dimensions and calculates area and perimeter
     elif ask == "both" or ask == "b":
         base = intcheck("Base: ")
@@ -93,7 +93,7 @@ def triangle(ask):
         side_b = intcheck("Side B:")
         side_c = intcheck("Side C:")
         perimeter = side_a + side_b + side_c
-        return area, perimeter
+    return area, perimeter
 
 # gets dimensions for parallelogram, calculates area and perimeter
 def parallelogram(ask):
@@ -102,13 +102,13 @@ def parallelogram(ask):
         base = intcheck("Base: ")
         height = intcheck("Height: ")
         area = base * height
-        return area
+        perimeter = "n/a"
     # gets three sides, only calculates perimeter
     elif ask == "perimeter" or ask == "p":
         side_a = intcheck("Side A:")
         side_b = intcheck("Side B:")
+        area = "n/a"
         perimeter = 2 * (side_a + side_b)
-        return perimeter
     elif ask == "both" or  ask == "b":
     # gets all dimensions and calculates area and perimter
         base = intcheck("Base: ")
@@ -117,7 +117,7 @@ def parallelogram(ask):
         side_a = intcheck("Side A:")
         side_b = intcheck("Side B:")
         perimeter = 2 * (side_a + side_b)
-        return area, perimeter
+    return area, perimeter
 
 # gets dimensions for trapezium, calculates area and perimeter
 def trapzeium(ask):
@@ -127,15 +127,15 @@ def trapzeium(ask):
         side_a = intcheck("Side A: ")
         side_b = intcheck("Side B: ")
         area = (side_a + side_b)/2 * height
-        return area
+        perimeter = ""
     elif ask == "perimeter" or ask == "p":
     # gets all sides, only calculates perimeter
         side_a = intcheck("Side A:")
         side_b = intcheck("Side B:")
         side_c = intcheck("Side C:")
         side_d = intcheck("Side D: ")
+        area = ""
         perimeter = side_a + side_b + side_c + side_d
-        return perimeter
     elif ask == "both" or ask == "b":
     # gets all dimensions, calculates height and perimeter
         height = intcheck("Height: ")
@@ -145,7 +145,7 @@ def trapzeium(ask):
         side_c = intcheck("Side C:")
         side_d = intcheck("Side D: ")
         perimeter = side_a + side_b + side_c + side_d
-        return area, perimeter
+    return area, perimeter
 
 # recycled, checks that user inputs something
 def not_blank(question, error_msg, num_ok):
@@ -218,14 +218,19 @@ while keep_going == "":
     if shape in possible_shapes:
         if a_p == "area" or a_p == "a":
             area += dimension[0]
+            area = "{:.2f}".format(area)
+            perimeter = "n/a"
         elif a_p == "perimeter" or a_p == "p":
             perimeter += dimension[1]
+            perimeter = "{:.2f}".format(perimeter)
+            area = "n/a"
+
         elif a_p == "both" or a_p == "b":
             area += dimension[0]
             perimeter += dimension[1]
 
         # prints out calculation
-        print("-----{}-----\nArea: {:.2f}{}^2\nPerimeter: {:.2f}{}\n".format(shape.capitalize(), area, unit, perimeter, unit)) # .capitalize() makes the first letter uppercase
+        print("-----{}-----\nArea: {} {}^2\nPerimeter: {} {}\n".format(shape.capitalize(), area, unit, perimeter, unit)) # .capitalize() makes the first letter uppercase
         shape_history.append(area) # adds area measurement to shape history
         shape_history.append(perimeter) # adds perimeter measure to shape history
         shape_history.append(unit) # adds unit to shape history
