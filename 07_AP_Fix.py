@@ -56,14 +56,7 @@ def circle(ask):
     #formulas for area and perimeter
     area = math.pi * radius ** 2
     perimeter = 2 * math.pi * radius
-
-    if ask == "area" or ask == "a":
-        return area
-    elif ask == "perimeter" or ask == "p":
-        return perimeter
-    elif ask == "both" or ask =="b":
-        return area, perimeter
-
+    return area, perimeter
 
 # gets length and width for square and rectangle and calculates area and perimter
 def square_rectangle(ask):
