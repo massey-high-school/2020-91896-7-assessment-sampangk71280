@@ -91,8 +91,7 @@ def triangle(ask):
         area = 0.5 * base * height
         side_a = intcheck("Side A:")
         side_b = intcheck("Side B:")
-        side_c = intcheck("Side C:")
-        perimeter = side_a + side_b + side_c
+        perimeter = side_a + side_b + base
     return area, perimeter
 
 # gets dimensions for parallelogram, calculates area and perimeter
