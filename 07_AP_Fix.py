@@ -64,34 +64,17 @@ def circle(ask):
     elif ask == "both" or ask =="b":
         return area, perimeter
 
-# gets length for square and calculate area and perimeter
-def square(ask):
-    length = intcheck("Length: ")
-    # formulas for area and perimeter
-    area = length * length
-    perimeter =  length * 4
 
-    if ask == "area" or ask == "a":
-        return area
-    elif ask == "perimeter" or ask == "p":
-        return perimeter
-    elif ask == "both" or ask == "b":
-        return area, perimeter
-
-# gets length and width for rectangle and calculates area and perimter
-def rectangle(ask):
+# gets length and width for square and rectangle and calculates area and perimter
+def square_rectangle(ask):
     length = intcheck("Length: ")
-    width = intcheck ("Width: ")
-    #formulas for area and perimeter
+    width = length
+    if shape == "rectangle":
+        width = intcheck ("Width: ")
+        #formulas for area and perimeter
     area = length * width
     perimeter = (2 * length) + (2 * width)
-
-    if ask == "area" or ask == "a":
-        return area
-    elif ask == "perimeter" or ask == "p":
-        return perimeter
-    elif ask == "both" or ask == "b":
-        return area, perimeter
+    return area, perimeter
 
 # gets dimensions for triangle and calculates area and perimeter
 def triangle(ask):
@@ -229,10 +212,8 @@ while keep_going == "":
     # calls different function for each shape
     if shape == "circle":
         dimension = circle(a_p)
-    elif shape == "square":
-        dimension = square(a_p)
-    elif shape == "rectangle":
-        dimension = rectangle(a_p)
+    elif shape == "square" or shape == "rectangle":
+        dimension = square_rectangle(a_p)
     elif shape == "triangle":
         dimension = triangle(a_p)
     elif shape == "parallelogram":
@@ -243,9 +224,9 @@ while keep_going == "":
     # adds measurement to area and/or perimeter
     if shape in possible_shapes:
         if a_p == "area" or a_p == "a":
-            area += dimension
+            area += dimension[0]
         elif a_p == "perimeter" or a_p == "p":
-            perimeter += dimension
+            perimeter += dimension[1]
         elif a_p == "both" or a_p == "b":
             area += dimension[0]
             perimeter += dimension[1]
