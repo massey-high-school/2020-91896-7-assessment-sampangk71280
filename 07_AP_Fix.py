@@ -13,16 +13,14 @@ import math
 
 # functions
 # Checks that the user choices a shape from the list
-def string_checker(question, error):
+def string_checker(question, error, options):
     valid = False
     while not valid:
         # question
         response = input(question).lower()
 
         # returns valid response if it's in list
-        if response in possible_shapes:
-            return response
-        elif response in options:
+        if response in options:
             return response
         # prints error message
         else:
@@ -193,13 +191,13 @@ while keep_going == "":
     choices =(', ' .join(possible_shapes))
 
     # asks user for shape
-    shape = string_checker("Please choose a shape to pick from: {} \nShape: ".format(choices), "Oops please choose a shape from the list!")
+    shape = string_checker("Please choose a shape to pick from: {} \nShape: ".format(choices), "Oops please choose a shape from the list!", possible_shapes)
     shape_history.append(shape) # puts shape in list
     # asks user for unit, accepts any letters but not numbers/blank
     unit = not_blank("What units are you using for your calculation?",
                      "Please enter units, not numbers, do not leave it blank!", "no")
     # asks user if they want to calculate area, perimeter, or both
-    a_p = string_checker("Do you want to calculate the area (a), perimeter (p), or both (b)?", "Please choose a, p, or b!")
+    a_p = string_checker("Do you want to calculate the area (a), perimeter (p), or both (b)?", "Please choose a, p, or b!", options)
 
     # calls different function for each shape
     if shape == "circle":
