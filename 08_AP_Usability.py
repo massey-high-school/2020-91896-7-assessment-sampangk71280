@@ -72,7 +72,7 @@ def triangle(ask):
     # gets base and height, only calculates area
     if ask == "area" or ask == "a":
         base = intcheck("What is the base?\nBase: ")
-        height = intcheck("What is the height?\Height: ")
+        height = intcheck("What is the height?\nHeight: ")
         area = 0.5 * base * height
         perimeter = "n/a"
     # gets three sides, only calculates perimeter
@@ -137,7 +137,7 @@ def trapzeium(ask):
     # gets all dimensions, calculates height and perimeter
         height = intcheck("What is the height?\nHeight: ")
         side_a = intcheck("How long is Side A?\nSide A:  ")
-        side_b = intcheck("How long is Side B?\nHow long is Side B?\nSide B:   ")
+        side_b = intcheck("How long is Side B?\nSide B:   ")
         area = (side_a + side_b) / 2 * height
         side_c = intcheck("How long is Side C?\nSide C: ")
         side_d = intcheck("How long is Side D?\nSide D:  ")
@@ -181,10 +181,10 @@ instructions = string_checker("Is this your first time using the Area/Perimeter 
 # for first timers, prints out instructions
 if instructions == "yes" or instructions == "y":
     print("\nWELCOME TO AREA/PERIMETER CALCULATOR!\n"
-          "This calculator will automatically calculate the area and/or perimeter of a chosen shape.\n"
-          "The shapes available are: circle, square, rectangle, triangle, parallelogram, and trapezium\n"
-          "It will ask you for dimensions and unit.\n"
-          "Don't forget to hit <enter> after each input!\n")
+          "- This calculator will automatically calculate the area and/or perimeter of a chosen shape.\n"
+          "- The shapes available are: circle, square, rectangle, triangle, parallelogram, and trapezium\n"
+          "- It will ask you for dimensions and unit.\n"
+          "- Don't forget to hit <enter> after each input!\n")
 # skips instructions for people who've used the calculator before
 elif instructions == "no" or instructions == "n":
     print()
@@ -199,16 +199,17 @@ while keep_going == "":
 
     shape_history = []  # shape history
     # Shapes available
-    possible_shapes = ["circle", "square", "rectangle", "triangle", "parallelogram", "trapezium"]
+    possible_shapes = ["circle", "c", "square", "s", "rectangle", "r", "triangle", "tr", "parallelogram", "p" "trapezium", "tz"]
     # two different ways for users to respond
     options = ["a", "area", "p", "perimeter", "b", "both"]
 
     # Code from https://www.edureka.co/community/1792/how-to-print-array-list-without-brackets-in-python
     # .join removes brackets and ' when printing out the list and adds a space between each item
-    choices =(', ' .join(possible_shapes))
+    # choices =(', ' .join(possible_shapes))
 
     # asks user for shape
-    shape = string_checker("Please choose a shape to pick from: {} \nShape: ".format(choices), "Ooops! Please choose one of the shapes in the list!\n", possible_shapes)
+    shape = string_checker("Please choose a shape to pick from: circle (c), square (s), rectangle (r), triangle (tr), parallelogram (p), trapezium (tz)\n"
+                           "Shape: ", "Ooops! Please choose one of the shapes in the list!\n", possible_shapes)
     shape_history.append(shape) # puts shape in list
     # asks user for unit, accepts any letters but not numbers/blank
     unit = not_blank("\nWhat units are you using for your calculation?",
@@ -218,16 +219,25 @@ while keep_going == "":
     print()
 
     # calls different function for each shape
-    if shape == "circle":
+    # after getting the dimensions, shape is renamed back to full shape name (instead of abbreivation) to make printing out heading better
+    if shape == "circle" or shape == "c":
         dimension = circle(a_p)
-    elif shape == "square" or shape == "rectangle":
+        shape = "circle"
+    elif shape == "square" or shape == "s" or shape == "rectangle" or shape == "r":
         dimension = square_rectangle(a_p)
-    elif shape == "triangle":
+        if shape == "s":
+            shape = "square"
+        elif shape == "r":
+            shape = "rectangle"
+    elif shape == "triangle" or shape == "tr":
         dimension = triangle(a_p)
-    elif shape == "parallelogram":
+        shape = "triangle"
+    elif shape == "parallelogram" or shape == "p":
         dimension = parallelogram(a_p)
-    elif shape == "trapezium":
+        shape = "parallelogram"
+    elif shape == "trapezium" or shape == "tz":
         dimension = trapzeium(a_p)
+        shape = "trapezium"
 
 
     # adds measurement to area and/or perimeter
@@ -258,7 +268,7 @@ while keep_going == "":
     history.append(shape_history) # adds shape_history to master history list (list within a list)
 
     # asks user if they want to continue using calculator
-    keep_going = input("Do you want to continue using the calculator? Press <enter> for yes and any key for no")
+    keep_going = input("Do you want to continue using the calculator? Press <enter> for yes and any key for no") # loops if nothing is entered
     print()
 
 print("**********HISTORY**********\n")
