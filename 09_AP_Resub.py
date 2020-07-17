@@ -55,7 +55,7 @@ def square_rectangle(ask):
     length = intcheck("What is the length?\nLength: ")
     width = length # For squares, all sides are the same
     # Gets width for rectangle
-    if shape == "rectangle":
+    if shape == "rectangle" or shape == "r":
         width = intcheck ("What is the width?\nWidth: ")
     # Formulas for area and perimeter
     area = length * width
@@ -107,8 +107,7 @@ def parallelogram(ask):
         height = intcheck("What is the height?\nHeight: ")
         area = base * height
         side_a = intcheck("How long is Side A?\nSide A: ")
-        side_b = intcheck("How long is Side B?\nSide B: ")
-        perimeter = 2 * (side_a + side_b)
+        perimeter = 2 * (side_a + base)
     return area, perimeter
 
 # Gets dimensions for trapezium, calculates area and perimeter
